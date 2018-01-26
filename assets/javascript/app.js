@@ -2,74 +2,64 @@ var correct = 0;
 var incorrect = 0;
 var time;
 var intervalVar;
+var currentindex=0;
 
 var questions = [{
 	question: "What is the name of the American animated sci-fi sitcom about the misadventures of a mad scientist and his grandson?",
-	answer1: "Rick and Morty",
-	answer2: "Jim meets world",
-	answer3: "Chelsea",
-	answer4: "The Oroville"
+	answers: ["Rick and Morty",
+			 "Jim meets world",
+			 "Chelsea",
+	         "The Oroville"]
 },{
 	question: "'Torchwood' is an anagram and spin-off of what popular British sci-fi series?",
-	answer1: "Doctor Who",
-	answer2: "Dirk Gentley's Holistic Detective Agency",
-	answer3: "Utopia",
-	answer4: "Wodorotch"
+	answers: ["Doctor Who",
+	         "Dirk Gentley's Holistic Detective Agency",
+	 		 "Utopia",
+	         "Wodorotch"]
 },{
 	question: "Star Trek: The Next Generation originally aired in what year?",
-	answer1: "1987",
-	answer2: "1967",
-	answer3: "1992",
-	answer4: "2001"
+	answers: ["1987",
+	         "1967",
+	         "1992",
+	         "2001"]
 
 },{
 	question: "What is the unit of length that is approximately 3.26 light-years?",
-	answer1:  "Parsec",
-	answer2:  "Interstellar Yard",
-	answer3: "Astronomical Unit",
-	answer4: "Gigametre"
+	answers:  ["Parsec",
+	          "Interstellar Yard",
+	          "Astronomical Unit",
+	          "Gigametre"]
 },{
 	question: "Bruce Willis played a convict turned time traveler in what 1995 movie?",
-	answer1:  "12 Monkeys",
-	answer2:  "Die Hard",
-	answer3: "Water World",
-	answer4: "The Fifth Element"
+	answers:  ["12 Monkeys",
+	          "Die Hard",
+	          "Water World",
+	          "The Fifth Element"]
 
 }	];
 
-$(document).ready(function(){
-	$("#time").html("30");
+intervalVar = setInterval(function(){
+	startRound();
+}, 1000 * 2);
+function startRound(){
+	$("#answers").empty();
+	$("#question").empty();
+	var currQuest = questions[currentindex];
+	$("#question").html(currQuest.question);
+	for(var i=0; i<currQuest.answers.length;i++){
+		var newLI = $("<li>");
+		newLI.addClass("items");
+		newLI.text(currQuest.answers[i]);
+		$("#answers").append(newLI);
+
+	}
+	currentindex++;
 	
-	loadQuestion(questions);
-	console.log(questions[0].question);
+	
 	startTimer();
 
-}); 
-
-function loadQuestion(arr){
-	for( var i=0; i<arr.length; i++){
-
-		var question = questions[i];
-		intervalVar = setInterval(function(){
-			$("#question").html(question.question);
-			loadAnswers(question);
-		}, 1000 * 10);
-		
-		// debugger;
-	}
 }
 
-function loadAnswers(questionObj){
-	$("#answers").empty();
-	for(var i=1;i<=4;i++){
-		var newLI = $("<li>");
-		var ansStr = "answer" + i;
-		console.log(questionObj.answer1);
-		$(newLI).text(questionObj.answer1);
-		$("#answers").append(newLI);
-	}
-	
-}
 function startTimer(){
 	time = 30;
 	// while(time > 0){
@@ -86,3 +76,13 @@ function win(){
 function lose(){
 
 }
+
+$(document).ready(function(){
+	$("#time").html("30");
+	
+	
+	console.log(questions[0].question);
+	startRound();
+	
+
+}); 

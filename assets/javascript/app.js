@@ -76,7 +76,10 @@ function win(){
 function lose(){
 
 }
+checkAnswer(){
 
+}
+$(document).on("click", ".items", checkAnswer);
 $(document).ready(function(){
 	$("#time").html("30");
 	

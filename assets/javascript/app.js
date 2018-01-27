@@ -3,6 +3,7 @@ var incorrect = 0;
 var time;
 var intervalVar;
 var currentindex=0;
+var end
 
 var questions = [{
 	question: "What is the name of the American animated sci-fi sitcom about the misadventures of a mad scientist and his grandson?",
@@ -39,20 +40,27 @@ var questions = [{
 }	];
 
 intervalVar = setInterval(function(){
-	startRound();
+	
+		startRound();
+	
+			
 }, 1000 * 2);
 function startRound(){
-	$("#answers").empty();
-	$("#question").empty();
-	var currQuest = questions[currentindex];
-	$("#question").html(currQuest.question);
-	for(var i=0; i<currQuest.answers.length;i++){
-		var newLI = $("<li>");
-		newLI.addClass("items");
-		newLI.text(currQuest.answers[i]);
-		$("#answers").append(newLI);
+	
+		$("#answers").empty();
+		$("#question").empty();
+		var currQuest = questions[currentindex];
+		$("#question").html(currQuest.question);
+		for(var i=0; i<currQuest.answers.length;i++){
+			var newLI = $("<li>");
+			newLI.addClass("items");
+			newLI.attr("data-index", i);
+			$(newLI).data("id", i);
+			newLI.text(currQuest.answers[i]);
+			$("#answers").append(newLI);
 
-	}
+		}
+	
 	currentindex++;
 	
 	
@@ -70,14 +78,22 @@ function startTimer(){
 	// }
 }
 function win(){
-
+	alert("You win!")
 }
 
 function lose(){
-
+	alert("You Lose!");
 }
-checkAnswer(){
-
+function checkAnswer(){
+	var answer = $(this).attr("data-index");
+	console.log(answer);
+	if(answer == 0){
+		win();
+	} else {
+		lose();
+	}
+	
+	
 }
 $(document).on("click", ".items", checkAnswer);
 $(document).ready(function(){

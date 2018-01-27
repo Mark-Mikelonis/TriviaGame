@@ -32,7 +32,7 @@ function startRound() {
     }
     $("#answers").empty();
     $("#question").empty();
-    $("#time").html("Time remaining: ");
+    $("#time").html("Time remaining: 30");
     currQuest = questions[currentindex];
     $("#question").html(currQuest.question);
     var newUL = $("<ul>");
@@ -42,7 +42,13 @@ function startRound() {
         newLI.attr("data-index", i);
         $(newLI).data("id", i);
         newLI.text(currQuest.answers[i]);
-        $(newUL).prepend(newLI);
+        var randNum = Math.floor(Math.random() * 10);
+        if (randNum % 2 === 0){
+        	$(newUL).prepend(newLI);
+        } else {
+        	$(newUL).append(newLI);
+        }
+        
     }
     $("#answers").append(newUL);
     startTimer();

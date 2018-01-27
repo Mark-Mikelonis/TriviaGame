@@ -16,3 +16,9 @@ h2 {
 	font-size: 20px;
 	font-weight: bold;
 }
+#answers h2 {
+	color:red;
+}
+ul {
+	list-style-type: none; 
+}

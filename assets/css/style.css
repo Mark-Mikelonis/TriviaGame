@@ -19,6 +19,27 @@ h2 {
 #answers h2 {
 	color:red;
 }
+li:hover{
+	background-color: yellow;
+	color: black;
+	font-size: 20px;
+	font-weight: bolder;
+
+}
+li {
+	text-align: center;
+}
 ul {
 	list-style-type: none; 
 }
+hr {
+	background-color: yellow;
+}
+.container{
+
+	border-style: dashed;
+	border-width: 3px;
+	border-color: yellow;
+	margin-top: 30px;
+	height: 375px;
+	background-color: #622569;

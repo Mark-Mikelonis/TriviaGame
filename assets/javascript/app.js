@@ -140,7 +140,7 @@ function displayResults(){
 	btn.text("Restart Game");
 	btn.addClass("btn-warning");
 	btn.on("click", reset);
-	$("#answers").html("<p>Wins: " + wins + "</p><p>Losses: " + losses + "</p>");
+	$("#answers").html("<h3>Results:</h3><p>Wins: " + wins + "</p><p>Losses: " + losses + "</p>");
 	$("#answers").append(btn);
 }
 $(document).on("click", ".items", checkAnswer);
